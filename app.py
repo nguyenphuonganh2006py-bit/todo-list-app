@@ -23,3 +23,28 @@ def list_tasks():
     for i, task in enumerate(tasks):
         print(f"{i + 1}. {task}") 
     print("--------------------------\n")
+def delete_task(task_index):
+    """Xóa công việc theo chỉ số."""
+    if 0 <= task_index < len(tasks):
+        removed_task = tasks.pop(task_index)
+        print(f"✅ Đã xóa công việc: {removed_task['name']}")
+    else:
+        print("❌ Không tồn tại công việc này!")
+
+def update_task(index, new_name):
+    """Cập nhật tên công việc."""
+    if 0 <= index < len(tasks):
+        old_name = tasks[index]["name"]
+        tasks[index]["name"] = new_name
+        print(f"✏️ Đã cập nhật: '{old_name}' → '{new_name}'")
+    else:
+        print("❌ Không tìm thấy công việc cần cập nhật.")
+
+if __name__ == "__main__":
+    add_task("Học bài Git")
+    add_task("Làm bài tập")
+    complete_task(0)
+    list_tasks()
+    delete_task(1)
+    update_task(0, "Ôn lại Git cơ bản")
+    list_tasks()
